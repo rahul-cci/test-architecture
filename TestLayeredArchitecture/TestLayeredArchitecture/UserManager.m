@@ -15,7 +15,7 @@
     if (!self) {
         self = [super init];
     }
-    self.repository = [[UserRepository alloc]init];
+    self.repository = [[UserDBRepository alloc]init];
     
     return self;
 }

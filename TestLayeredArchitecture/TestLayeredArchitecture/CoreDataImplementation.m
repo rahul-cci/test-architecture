@@ -31,7 +31,40 @@
 - (BOOL)saveObject:(NSObject *)object{
     
     NSManagedObjectContext *context = [self managedObjectContext];
+    NSString *entityName = [NSString stringWithFormat:@"%@",[object class]];
+    NSManagedObject *managedObject = [NSEntityDescription
+                                      insertNewObjectForEntityForName:entityName
+                                      inManagedObjectContext:context];
     
+    NSLog(@"Class name:%@",[object class] );
+    
+    
+    unsigned propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([object class], &propertyCount);
+    for (int prop = 0; prop < propertyCount; prop++)
+    {
+        // for all property attributes
+        unsigned int attributeCount = 0;
+        objc_property_t property = properties[prop];
+        objc_property_attribute_t* attributes = property_copyAttributeList(property, &attributeCount);
+        NSString *propertyKey;
+        for (unsigned int  attr = 0; attr < attributeCount; attr++)
+        {
+            switch (attributes[attr].name[0]) {
+                case 'V':
+                    NSLog(@"property name:%s",attributes[attr].value);
+                    propertyKey = [NSString stringWithFormat:@"%s",attributes[attr].value];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        NSLog(@"property value:%@",[object valueForKey:propertyKey]);
+        [managedObject setValue:[object valueForKey:propertyKey] forKey:propertyKey];
+        
+    }
+
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -130,44 +163,6 @@
         [object setValue:[managedObject valueForKey:key] forKey:key];
     }
     return  object;
-}
-
-- (NSManagedObject*)toManagedObject:(NSObject*)object{
-    NSString *entityName = [NSString stringWithFormat:@"%@",[object class]];
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *managedObject = [NSEntityDescription
-                                      insertNewObjectForEntityForName:entityName
-                                      inManagedObjectContext:context];
-    
-    NSLog(@"Class name:%@",[object class] );
-    
-    
-    unsigned propertyCount = 0;
-    objc_property_t *properties = class_copyPropertyList([object class], &propertyCount);
-    for (int prop = 0; prop < propertyCount; prop++)
-    {
-        // for all property attributes
-        unsigned int attributeCount = 0;
-        objc_property_t property = properties[prop];
-        objc_property_attribute_t* attributes = property_copyAttributeList(property, &attributeCount);
-        NSString *propertyKey;
-        for (unsigned int  attr = 0; attr < attributeCount; attr++)
-        {
-            switch (attributes[attr].name[0]) {
-                case 'V':
-                    NSLog(@"property name:%s",attributes[attr].value);
-                    propertyKey = [NSString stringWithFormat:@"%s",attributes[attr].value];
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-        NSLog(@"property value:%@",[object valueForKey:propertyKey]);
-        [managedObject setValue:[object valueForKey:propertyKey] forKey:propertyKey];
-        
-    }
-    return managedObject;
 }
 
 @end

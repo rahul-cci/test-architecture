@@ -26,7 +26,7 @@
     [self.nameLabel setText:user.lastName];
     
     user.firstName = @"Creative";
-    user.lastName = @"Capsule";
+    user.lastName = @"Capsule Infotech";
     user.joiningDate = [NSDate date];
     user.age = 25;
     user.isSalaried = YES;

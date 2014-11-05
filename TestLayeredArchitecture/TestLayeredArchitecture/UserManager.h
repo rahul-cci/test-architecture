@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
-#import "UserRepository.h"
+#import "UserDBRepository.h"
 
 @interface UserManager : NSObject
 
-@property (nonatomic,strong) UserRepository *repository;
+@property (nonatomic,strong) UserDBRepository *repository;
 
 - (User*)getCurrentInUser;
 - (BOOL*)saveUser:(User*)user;
