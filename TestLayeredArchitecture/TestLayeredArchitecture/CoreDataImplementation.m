@@ -14,7 +14,6 @@
 - (id)getObjectById:(int)ID fromClass:(NSString*)className{
     //coredata code to fetch object from db
     id object = nil;
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", ID];
     [fetchRequest setPredicate:predicate];
@@ -140,37 +139,38 @@
 #pragma mark - Core Data Auxillory methods
 
 - (id)toObject:(NSManagedObject*) managedObject ofType:(NSString*)className{
+    
+    //This function converts a NSManagedObject to an object of class with the given className
     id object = [[NSClassFromString(className) alloc]init];
-    NSLog(@"creating model object for %@",className);
     NSEntityDescription *entity = [managedObject entity];
     for (NSString *key in [entity attributesByName] ) {
-        //NSLog(@"primitive Type:%@",key );
         [object setValue:[managedObject valueForKey:key] forKey:key];
     }
     for (NSString *key in [entity relationshipsByName]) {
-        NSLog(@"Pointer Type:%@",key );
+        //If the table has pointers to other tables we need to create objects for the pointed record
         id pointerObj = [object valueForKey:key];
         NSManagedObject *pointerManagedObject = [managedObject valueForKey:key];
         NSEntityDescription *entity = [pointerManagedObject entity];
         NSString *innerClassName = NSStringFromClass([pointerObj class]);
         innerClassName = [entity name];
         pointerObj = [self toObject:pointerManagedObject ofType:innerClassName];
-        NSLog(@"received inner object of %@ %@",innerClassName,pointerObj);
         [object setValue:pointerObj forKey:key];
     }
     
-    
+    //The primary key of the coredata table is copied to the identifier field
     int pk = [[[[[[managedObject objectID] URIRepresentation] absoluteString] lastPathComponent] substringFromIndex:1] intValue];
     [object setValue:[NSNumber numberWithInt:pk] forKey:@"identifier"];
-    NSLog(@"created object of %@ %@",className,object);
     return  object;
 }
 
 - (NSManagedObject*)toManagedObject:(id)object{
+    
+    //This function converts an object subclassed from Model to an NSManagedObject
     NSManagedObjectContext *context = [self managedObjectContext];
     NSString *entityName = [NSString stringWithFormat:@"%@",[object class]];
-    NSLog(@"creating managed object for %@",entityName);
     NSManagedObject *managedObject;
+    //
+    /*************/
     if ([object valueForKey:@"identifier"]==nil || [object valueForKey:@"identifier"]==0) {
         managedObject = [NSEntityDescription
                          insertNewObjectForEntityForName:entityName
@@ -195,8 +195,7 @@
         }
         
     }
-    
-    //NSLog(@"Class name:%@",[object class] );
+    /*********/
     
     
     unsigned propertyCount = 0;
