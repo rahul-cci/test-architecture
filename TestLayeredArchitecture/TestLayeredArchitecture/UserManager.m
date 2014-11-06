@@ -16,6 +16,8 @@
         self = [super init];
     }
     self.repository = [[UserDBRepository alloc]init];
+    self.userServiceRepository = [[UserServiceRepository alloc]init];
+
     
     return self;
 }
@@ -34,5 +36,12 @@
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:user.identifier] forKey:@"user_id"];
     return isSaved;
 }
+
+-(SignUpResponse *) signupUser : (SignUpRequest *) signupRequest {
+    
+    SignUpResponse *signUpResponse= [self.userServiceRepository signupUser:signupRequest];
+    return signUpResponse;
+}
+
 
 @end
