@@ -140,37 +140,38 @@
 #pragma mark - Core Data Auxillory methods
 
 - (id)toObject:(NSManagedObject*) managedObject ofType:(NSString*)className{
+    //This function converts a NSManagedObject to an object of class with the given className
     id object = [[NSClassFromString(className) alloc]init];
-    NSLog(@"creating model object for %@",className);
     NSEntityDescription *entity = [managedObject entity];
     for (NSString *key in [entity attributesByName] ) {
         //NSLog(@"primitive Type:%@",key );
         [object setValue:[managedObject valueForKey:key] forKey:key];
     }
     for (NSString *key in [entity relationshipsByName]) {
-        NSLog(@"Pointer Type:%@",key );
+        //If the table has pointers to other tables we need to create objects for the pointed record
         id pointerObj = [object valueForKey:key];
         NSManagedObject *pointerManagedObject = [managedObject valueForKey:key];
         NSEntityDescription *entity = [pointerManagedObject entity];
         NSString *innerClassName = NSStringFromClass([pointerObj class]);
         innerClassName = [entity name];
         pointerObj = [self toObject:pointerManagedObject ofType:innerClassName];
-        NSLog(@"received inner object of %@ %@",innerClassName,pointerObj);
         [object setValue:pointerObj forKey:key];
     }
     
-    
+    //The primary key of the coredata table is copied to the identifier field
     int pk = [[[[[[managedObject objectID] URIRepresentation] absoluteString] lastPathComponent] substringFromIndex:1] intValue];
     [object setValue:[NSNumber numberWithInt:pk] forKey:@"identifier"];
-    NSLog(@"created object of %@ %@",className,object);
     return  object;
 }
 
 - (NSManagedObject*)toManagedObject:(id)object{
+    //This function converts an object subclassed from Model to an NSManagedObject
     NSManagedObjectContext *context = [self managedObjectContext];
     NSString *entityName = [NSString stringWithFormat:@"%@",[object class]];
-    NSLog(@"creating managed object for %@",entityName);
     NSManagedObject *managedObject;
+    
+    /*************/
+    // This block checks if the passed object already exists in the db if yes fetches a reference to the existing record otherwise creates a new record in the table
     if ([object valueForKey:@"identifier"]==nil || [object valueForKey:@"identifier"]==0) {
         managedObject = [NSEntityDescription
                          insertNewObjectForEntityForName:entityName
@@ -195,10 +196,10 @@
         }
         
     }
+    /*************/
     
-    //NSLog(@"Class name:%@",[object class] );
     
-    
+    //Loop through the properties of the given object and create an NSManagedObject
     unsigned propertyCount = 0;
     objc_property_t *properties = class_copyPropertyList([object class], &propertyCount);
     for (int prop = 0; prop < propertyCount; prop++)
@@ -213,25 +214,23 @@
         {
             switch (attributes[attr].name[0]) {
                 case 'V':
-                    NSLog(@"property name:%s",attributes[attr].value);
                     propertyKey = [NSString stringWithFormat:@"%s",attributes[attr].value];
                     break;
-                    
                 default:
                     break;
             }
         }
         
         id valueObj = [object valueForKey:propertyKey];
+        //If any of the properties is a Custom model create NSManagedObject for it recursively
         if ([valueObj respondsToSelector:@selector(isOfModelType)]) {
-            //is a custom model. Save the inner object and put the object id in the current object
+            //is a custom model.
             [self saveObject:[object valueForKey:propertyKey]];
             NSManagedObject *innerObject = [self toManagedObject:[object valueForKey:propertyKey]];
             [managedObject setValue:innerObject forKey:propertyKey];
         }
         else{
             //is a primitive type hence can be assigned directly.
-            NSLog(@"property value:%@",[object valueForKey:propertyKey]);
             [managedObject setValue:[object valueForKey:propertyKey] forKey:propertyKey];
         }
         
