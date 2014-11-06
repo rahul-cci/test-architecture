@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B751B4CA1A0A203C006FD259 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = B751B4C91A0A203C006FD259 /* Company.m */; };
+		B75796B01A0A43110022C729 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = B75796AF1A0A43110022C729 /* Model.m */; };
 		B7B09E541A08A9F10038C04A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B09E531A08A9F10038C04A /* main.m */; };
 		B7B09E571A08A9F10038C04A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B09E561A08A9F10038C04A /* AppDelegate.m */; };
 		B7B09E5A1A08A9F10038C04A /* TestLayeredArchitecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7B09E581A08A9F10038C04A /* TestLayeredArchitecture.xcdatamodeld */; };
@@ -35,6 +36,8 @@
 /* Begin PBXFileReference section */
 		B751B4C81A0A203C006FD259 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		B751B4C91A0A203C006FD259 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		B75796AE1A0A43110022C729 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		B75796AF1A0A43110022C729 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		B7B09E4E1A08A9F10038C04A /* TestLayeredArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestLayeredArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B09E521A08A9F10038C04A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7B09E531A08A9F10038C04A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				B7B09E861A08AD730038C04A /* CoreDataImplementation.m */,
 				B751B4C81A0A203C006FD259 /* Company.h */,
 				B751B4C91A0A203C006FD259 /* Company.m */,
+				B75796AE1A0A43110022C729 /* Model.h */,
+				B75796AF1A0A43110022C729 /* Model.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				B7B09E801A08AAAF0038C04A /* UserManager.m in Sources */,
 				B751B4CA1A0A203C006FD259 /* Company.m in Sources */,
 				B7B09E5A1A08A9F10038C04A /* TestLayeredArchitecture.xcdatamodeld in Sources */,
+				B75796B01A0A43110022C729 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,16 +20,19 @@
     return self;
 }
 
-- (User*)getCurrentInUser{
+- (User*)getCurrentUser{
     
     //get user id from user defaults
     User *user = [[User alloc]init];
-    user = [self.repository getUserById:1];
+    int userid = [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_id"]intValue];
+    user = [self.repository getUserById:userid];
     return user;
 }
 
-- (BOOL*)saveUser:(User*)user{
-    return [self.repository saveUser:user];
+- (BOOL)saveUser:(User*)user{
+    BOOL isSaved = [self.repository saveUser:user];
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:user.identifier] forKey:@"user_id"];
+    return isSaved;
 }
 
 @end

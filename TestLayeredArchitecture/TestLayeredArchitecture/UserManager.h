@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong) UserDBRepository *repository;
 
-- (User*)getCurrentInUser;
-- (BOOL*)saveUser:(User*)user;
+- (User*)getCurrentUser;
+- (BOOL)saveUser:(User*)user;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  Company.h
+//  Model.h
 //  TestLayeredArchitecture
 //
 //  Created by Rahul Shettigar on 05/11/14.
@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Model.h"
 
-@interface Company : Model
-@property (nonatomic,strong) NSString *companyName;
-@property (nonatomic,strong) NSString *address;
+@interface Model : NSObject
+
+@property (nonatomic) int identifier;
+
+- (BOOL) isOfModelType;
 @end
