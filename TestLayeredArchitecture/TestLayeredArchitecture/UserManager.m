@@ -8,31 +8,37 @@
 
 #import "UserManager.h"
 
+
+
 @implementation UserManager
 @synthesize repository;
+@synthesize userServiceRepository;
 
 - (id)init{
     if (!self) {
         self = [super init];
     }
     self.repository = [[UserDBRepository alloc]init];
-    
+    self.userServiceRepository = [[UserServiceRepository alloc]init];
     return self;
 }
 
-- (User*)getCurrentUser{
+- (User*)getCurrentInUser{
     
     //get user id from user defaults
     User *user = [[User alloc]init];
-    int userid = [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_id"]intValue];
-    user = [self.repository getUserById:userid];
+    user = [self.repository getUserById:1];
     return user;
 }
 
-- (BOOL)saveUser:(User*)user{
-    BOOL isSaved = [self.repository saveUser:user];
-    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:user.identifier] forKey:@"user_id"];
-    return isSaved;
+- (BOOL*)saveUser:(User*)user{
+    return [self.repository saveUser:user];
+}
+
+-(SignUpResponse *) signupUser : (SignUpRequest *) signupRequest {
+    
+    SignUpResponse *signUpResponse= [self.userServiceRepository signupUser:signupRequest];
+    return signUpResponse;
 }
 
 @end

@@ -10,5 +10,4 @@
 
 @implementation Company
 @synthesize companyName,address;
-
 @end

@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "UserDBRepository.h"
+#import "SignUpResponse.h"
+#import "SignUpRequest.h"
+#import "UserServiceRepository.h"
 
 @interface UserManager : NSObject
 
 @property (nonatomic,strong) UserDBRepository *repository;
+@property (nonatomic,strong) UserServiceRepository *userServiceRepository;
 
-- (User*)getCurrentUser;
-- (BOOL)saveUser:(User*)user;
 
+- (User*)getCurrentInUser;
+- (BOOL*)saveUser:(User*)user;
+-(SignUpResponse *) signupUser : (SignUpRequest *) signupRequest;
 @end

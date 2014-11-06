@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Model.h"
 
-@interface Company : Model
+@interface Company : NSObject
 @property (nonatomic,strong) NSString *companyName;
 @property (nonatomic,strong) NSString *address;
 @end

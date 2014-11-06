@@ -15,8 +15,6 @@
     //coredata code to fetch object from db
     id object = nil;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", ID];
-    [fetchRequest setPredicate:predicate];
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:className inManagedObjectContext:context];
@@ -32,27 +30,46 @@
 - (BOOL)saveObject:(NSObject *)object{
     
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *managedObject = [self toManagedObject:object];
+    NSString *entityName = [NSString stringWithFormat:@"%@",[object class]];
+    NSManagedObject *managedObject = [NSEntityDescription
+                                      insertNewObjectForEntityForName:entityName
+                                      inManagedObjectContext:context];
     
+    NSLog(@"Class name:%@",[object class] );
+    
+    
+    unsigned propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([object class], &propertyCount);
+    for (int prop = 0; prop < propertyCount; prop++)
+    {
+        // for all property attributes
+        unsigned int attributeCount = 0;
+        objc_property_t property = properties[prop];
+        objc_property_attribute_t* attributes = property_copyAttributeList(property, &attributeCount);
+        NSString *propertyKey;
+        for (unsigned int  attr = 0; attr < attributeCount; attr++)
+        {
+            switch (attributes[attr].name[0]) {
+                case 'V':
+                    NSLog(@"property name:%s",attributes[attr].value);
+                    propertyKey = [NSString stringWithFormat:@"%s",attributes[attr].value];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        NSLog(@"property value:%@",[object valueForKey:propertyKey]);
+        [managedObject setValue:[object valueForKey:propertyKey] forKey:propertyKey];
+        
+    }
+
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         return false;
     }
-    
-    
-    //update identifier to the primary key.
-    if ([object valueForKey:@"identifier"]==nil || [[object valueForKey:@"identifier"] intValue]==0) {
-        int pk = [[[[[[managedObject objectID] URIRepresentation] absoluteString] lastPathComponent] substringFromIndex:1] intValue];
-        [object setValue:[NSNumber numberWithInt:pk] forKey:@"identifier"];
-        [managedObject setValue:[NSNumber numberWithInt:pk] forKey:@"identifier"];
-    }
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        return false;
-    }
 
-    
     return true;
 }
 
@@ -241,6 +258,9 @@
     }
     
     return managedObject;
+}
+
+    return  object;
 }
 
 @end
