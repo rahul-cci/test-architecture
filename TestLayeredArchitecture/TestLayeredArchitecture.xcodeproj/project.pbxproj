@@ -43,25 +43,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C614DEF1A0A39D600236CDC /* UserServiceRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserServiceRepository.h; path = ../UserServiceRepository.h; sourceTree = "<group>"; };
-		4C614DF01A0A39D600236CDC /* UserServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserServiceRepository.m; path = ../UserServiceRepository.m; sourceTree = "<group>"; };
-		4C614DF21A0A3A1500236CDC /* ServicesProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ServicesProtocol.h; path = ../ServicesProtocol.h; sourceTree = "<group>"; };
-		4C614DF31A0A3B8F00236CDC /* RestKitImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestKitImplementation.h; path = ../RestKitImplementation.h; sourceTree = "<group>"; };
-		4C614DF41A0A3B8F00236CDC /* RestKitImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestKitImplementation.m; path = ../RestKitImplementation.m; sourceTree = "<group>"; };
-		4C614DF71A0A3F3000236CDC /* SignUpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpRequest.h; sourceTree = "<group>"; };
-		4C614DF81A0A3F3000236CDC /* SignUpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpRequest.m; sourceTree = "<group>"; };
-		4C614DFA1A0A3F5400236CDC /* SignUpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpResponse.h; sourceTree = "<group>"; };
-		4C614DFB1A0A3F5400236CDC /* SignUpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpResponse.m; sourceTree = "<group>"; };
-		4C79B25B1A0A485800D632BE /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
-		4C79B25C1A0A485800D632BE /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
-		4C79B25E1A0A487000D632BE /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		4C79B25F1A0A487000D632BE /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beacon.m; sourceTree = "<group>"; };
-		4C79B2611A0A488400D632BE /* BeaconService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconService.h; sourceTree = "<group>"; };
-		4C79B2621A0A488400D632BE /* BeaconService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconService.m; sourceTree = "<group>"; };
-		4C79B2641A0A489300D632BE /* RangingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangingService.h; sourceTree = "<group>"; };
-		4C79B2651A0A489300D632BE /* RangingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangingService.m; sourceTree = "<group>"; };
-		4C79B2671A0A511E00D632BE /* RestKitMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestKitMapping.h; path = ../RestKitMapping.h; sourceTree = "<group>"; };
-		4C79B2681A0A511E00D632BE /* RestKitMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestKitMapping.m; path = ../RestKitMapping.m; sourceTree = "<group>"; };
+		4C614DEF1A0A39D600236CDC /* UserServiceRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserServiceRepository.h; sourceTree = "<group>"; };
+		4C614DF01A0A39D600236CDC /* UserServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserServiceRepository.m; sourceTree = "<group>"; };
+		4C614DF21A0A3A1500236CDC /* ServicesProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesProtocol.h; sourceTree = "<group>"; };
+		4C614DF31A0A3B8F00236CDC /* RestKitImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitImplementation.h; sourceTree = "<group>"; };
+		4C614DF41A0A3B8F00236CDC /* RestKitImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitImplementation.m; sourceTree = "<group>"; };
+		4C614DF71A0A3F3000236CDC /* SignUpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpRequest.h; path = TestLayeredArchitecture/SignUpRequest.h; sourceTree = "<group>"; };
+		4C614DF81A0A3F3000236CDC /* SignUpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpRequest.m; path = TestLayeredArchitecture/SignUpRequest.m; sourceTree = "<group>"; };
+		4C614DFA1A0A3F5400236CDC /* SignUpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpResponse.h; path = TestLayeredArchitecture/SignUpResponse.h; sourceTree = "<group>"; };
+		4C614DFB1A0A3F5400236CDC /* SignUpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpResponse.m; path = TestLayeredArchitecture/SignUpResponse.m; sourceTree = "<group>"; };
+		4C79B25B1A0A485800D632BE /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Employee.h; path = TestLayeredArchitecture/Employee.h; sourceTree = "<group>"; };
+		4C79B25C1A0A485800D632BE /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Employee.m; path = TestLayeredArchitecture/Employee.m; sourceTree = "<group>"; };
+		4C79B25E1A0A487000D632BE /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = TestLayeredArchitecture/Beacon.h; sourceTree = "<group>"; };
+		4C79B25F1A0A487000D632BE /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Beacon.m; path = TestLayeredArchitecture/Beacon.m; sourceTree = "<group>"; };
+		4C79B2611A0A488400D632BE /* BeaconService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeaconService.h; path = TestLayeredArchitecture/BeaconService.h; sourceTree = "<group>"; };
+		4C79B2621A0A488400D632BE /* BeaconService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeaconService.m; path = TestLayeredArchitecture/BeaconService.m; sourceTree = "<group>"; };
+		4C79B2641A0A489300D632BE /* RangingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangingService.h; path = TestLayeredArchitecture/RangingService.h; sourceTree = "<group>"; };
+		4C79B2651A0A489300D632BE /* RangingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RangingService.m; path = TestLayeredArchitecture/RangingService.m; sourceTree = "<group>"; };
+		4C79B2671A0A511E00D632BE /* RestKitMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitMapping.h; sourceTree = "<group>"; };
+		4C79B2681A0A511E00D632BE /* RestKitMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitMapping.m; sourceTree = "<group>"; };
 		5A156AA71DD39ECB89FF689E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9425D6257E8B658B235487B8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B049E46D353A6AAD0438A2BF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +111,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C614DF61A0A3DFE00236CDC /* RestKitModels */ = {
+		4C614DF61A0A3DFE00236CDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4C614DF71A0A3F3000236CDC /* SignUpRequest.h */,
@@ -127,7 +127,7 @@
 				4C79B2641A0A489300D632BE /* RangingService.h */,
 				4C79B2651A0A489300D632BE /* RangingService.m */,
 			);
-			name = RestKitModels;
+			name = Models;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -223,7 +223,7 @@
 				4C614DF21A0A3A1500236CDC /* ServicesProtocol.h */,
 				4C614DF31A0A3B8F00236CDC /* RestKitImplementation.h */,
 				4C614DF41A0A3B8F00236CDC /* RestKitImplementation.m */,
-				4C614DF61A0A3DFE00236CDC /* RestKitModels */,
+				4C614DF61A0A3DFE00236CDC /* Models */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
