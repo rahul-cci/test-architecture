@@ -10,6 +10,6 @@
 
 @implementation User
 
-@synthesize firstName,lastName,age,joiningDate,isSalaried,currentCompany;
+@synthesize firstName,lastName,age,joiningDate,isSalaried;
 
 @end
