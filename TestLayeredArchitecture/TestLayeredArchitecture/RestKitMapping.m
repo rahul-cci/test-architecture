@@ -7,14 +7,14 @@
 //
 
 #import "RestKitMapping.h"
-#import "SignUpRequest.h"
-#import "SignUpResponse.h"
+#import "SignUp.h"
+#import "SignUp.h"
 #import "Employee.h"
 
 @implementation RestKitMapping
 + (RKObjectMapping *) defineMappingForSignUpRequest
 {
-    RKObjectMapping * signupRequestMapping =  [RKObjectMapping mappingForClass:[SignUpRequest class]];
+    RKObjectMapping * signupRequestMapping =  [RKObjectMapping mappingForClass:[SignUp class]];
     
     [signupRequestMapping addAttributeMappingsFromDictionary:@{
                                                                @"Email":@"email",
@@ -27,7 +27,7 @@
 
 + (RKObjectMapping *) defineMappingForSignUpResponse
 {
-    RKObjectMapping * signupResponseMapping =  [RKObjectMapping mappingForClass:[SignUpResponse class] ];
+    RKObjectMapping * signupResponseMapping =  [RKObjectMapping mappingForClass:[SignUp class] ];
     
     
     [signupResponseMapping addAttributeMappingsFromDictionary:@{

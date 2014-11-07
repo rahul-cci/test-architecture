@@ -11,6 +11,6 @@
 
 @interface RestKitImplementation : NSObject <ServicesProtocol>
 {
-    void(^successCallback)(SignUpResponse *response,NSError *error);
+    void(^successCallback)(SignUp *response,NSError *error);
 }
 @end

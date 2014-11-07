@@ -1,13 +1,14 @@
 //
-//  SignUpRequestObject.m
+//  SignUpResponseObject.m
 //  TestLayeredArchitecture
 //
 //  Created by Prachi Ghatwal on 05/11/14.
 //  Copyright (c) 2014 CCI. All rights reserved.
 //
 
-#import "SignUpRequest.h"
+#import "SignUp.h"
 #import <RestKit.h>
-@implementation SignUpRequest
+
+@implementation SignUp
 
 @end

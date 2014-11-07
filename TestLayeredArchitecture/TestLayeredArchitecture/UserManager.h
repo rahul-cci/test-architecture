@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "UserDBRepository.h"
-#import "SignUpResponse.h"
-#import "SignUpRequest.h"
+#import "SignUp.h"
+#import "SignUp.h"
 #import "UserServiceRepository.h"
 
 @interface UserManager : NSObject
 {
-    void(^successCallback)(SignUpResponse *response,NSError *error);
+    void(^successCallback)(SignUp *response,NSError *error);
 }
 
 @property (nonatomic,strong) UserDBRepository *repository;
@@ -23,6 +23,6 @@
 
 - (User*)getCurrentUser;
 - (BOOL)saveUser:(User*)user;
--(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
+-(void) signupUser : (SignUp *) signupRequest withCallback:(void(^)(SignUp *response,NSError *error))callback;
 
 @end

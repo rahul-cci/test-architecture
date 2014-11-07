@@ -9,13 +9,13 @@
 #ifndef TestLayeredArchitecture_ServicesProtocol_h
 #define TestLayeredArchitecture_ServicesProtocol_h
 
-#import "SignUpResponse.h"
+#import "SignUp.h"
 @protocol ServicesProtocol <NSObject>
 
 
 
 @required
-- (void)signupUser:(NSObject*)object  withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
+- (void)signupUser:(NSObject*)object  withCallback:(void(^)(SignUp *response,NSError *error))callback;
 
 
 @end

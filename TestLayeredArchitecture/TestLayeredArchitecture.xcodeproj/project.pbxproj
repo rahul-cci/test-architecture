@@ -14,8 +14,7 @@
 		4C876D931A0B9F9A006B7C6A /* RangingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D921A0B9F9A006B7C6A /* RangingService.m */; };
 		4C876D961A0B9FAA006B7C6A /* RestKitImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D951A0B9FAA006B7C6A /* RestKitImplementation.m */; };
 		4C876D991A0B9FC2006B7C6A /* RestKitMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D981A0B9FC2006B7C6A /* RestKitMapping.m */; };
-		4C876D9F1A0B9FF9006B7C6A /* SignUpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D9C1A0B9FF9006B7C6A /* SignUpRequest.m */; };
-		4C876DA01A0B9FF9006B7C6A /* SignUpResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D9E1A0B9FF9006B7C6A /* SignUpResponse.m */; };
+		4C876DA01A0B9FF9006B7C6A /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876D9E1A0B9FF9006B7C6A /* SignUp.m */; };
 		4C876DA31A0BA018006B7C6A /* UserServiceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876DA21A0BA018006B7C6A /* UserServiceRepository.m */; };
 		B751B4CA1A0A203C006FD259 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = B751B4C91A0A203C006FD259 /* Company.m */; };
 		B75796B01A0A43110022C729 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = B75796AF1A0A43110022C729 /* Model.m */; };
@@ -57,10 +56,8 @@
 		4C876D971A0B9FC2006B7C6A /* RestKitMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitMapping.h; sourceTree = "<group>"; };
 		4C876D981A0B9FC2006B7C6A /* RestKitMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitMapping.m; sourceTree = "<group>"; };
 		4C876D9A1A0B9FE8006B7C6A /* ServicesProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesProtocol.h; sourceTree = "<group>"; };
-		4C876D9B1A0B9FF9006B7C6A /* SignUpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpRequest.h; sourceTree = "<group>"; };
-		4C876D9C1A0B9FF9006B7C6A /* SignUpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpRequest.m; sourceTree = "<group>"; };
-		4C876D9D1A0B9FF9006B7C6A /* SignUpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpResponse.h; sourceTree = "<group>"; };
-		4C876D9E1A0B9FF9006B7C6A /* SignUpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpResponse.m; sourceTree = "<group>"; };
+		4C876D9D1A0B9FF9006B7C6A /* SignUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUp.h; sourceTree = "<group>"; };
+		4C876D9E1A0B9FF9006B7C6A /* SignUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUp.m; sourceTree = "<group>"; };
 		4C876DA11A0BA018006B7C6A /* UserServiceRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserServiceRepository.h; sourceTree = "<group>"; };
 		4C876DA21A0BA018006B7C6A /* UserServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserServiceRepository.m; sourceTree = "<group>"; };
 		5B95666E11498C39079B9BAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,10 +131,8 @@
 		4C876D871A0B9EFC006B7C6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4C876D9B1A0B9FF9006B7C6A /* SignUpRequest.h */,
-				4C876D9C1A0B9FF9006B7C6A /* SignUpRequest.m */,
-				4C876D9D1A0B9FF9006B7C6A /* SignUpResponse.h */,
-				4C876D9E1A0B9FF9006B7C6A /* SignUpResponse.m */,
+				4C876D9D1A0B9FF9006B7C6A /* SignUp.h */,
+				4C876D9E1A0B9FF9006B7C6A /* SignUp.m */,
 				4C876D911A0B9F9A006B7C6A /* RangingService.h */,
 				4C876D921A0B9F9A006B7C6A /* RangingService.m */,
 				4C876D8E1A0B9F8D006B7C6A /* Employee.h */,
@@ -387,8 +382,7 @@
 				4C876D8D1A0B9F32006B7C6A /* BeaconService.m in Sources */,
 				B7B09E801A08AAAF0038C04A /* UserManager.m in Sources */,
 				B751B4CA1A0A203C006FD259 /* Company.m in Sources */,
-				4C876D9F1A0B9FF9006B7C6A /* SignUpRequest.m in Sources */,
-				4C876DA01A0B9FF9006B7C6A /* SignUpResponse.m in Sources */,
+				4C876DA01A0B9FF9006B7C6A /* SignUp.m in Sources */,
 				4C876D961A0B9FAA006B7C6A /* RestKitImplementation.m in Sources */,
 				B7B09E5A1A08A9F10038C04A /* TestLayeredArchitecture.xcdatamodeld in Sources */,
 				4C876D991A0B9FC2006B7C6A /* RestKitMapping.m in Sources */,

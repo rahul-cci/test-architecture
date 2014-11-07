@@ -9,11 +9,11 @@
 #import "RestKitImplementation.h"
 
 @implementation RestKitImplementation
-- (void)signupUser:(NSObject*)object  withCallback:(void (^)(SignUpResponse *, NSError *))callback {
+- (void)signupUser:(NSObject*)object  withCallback:(void (^)(SignUp *, NSError *))callback {
     successCallback = callback;
    
     
-    SignUpResponse *signupResponseObject = [[SignUpResponse alloc]init];
+    SignUp *signupResponseObject = [[SignUp alloc]init];
     Employee *emp = [[Employee alloc]init];
     emp.firstName = @"Prachi";
     signupResponseObject.employee = emp;

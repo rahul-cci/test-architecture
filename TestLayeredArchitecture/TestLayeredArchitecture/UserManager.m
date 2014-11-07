@@ -37,10 +37,11 @@
     return isSaved;
 }
 
--(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void (^)(SignUpResponse *, NSError *))callback {
+-(void) signupUser : (SignUp *) signupRequest withCallback:(void (^)(SignUp *, NSError *))callback {
     successCallback = callback;
     
-    [self.userServiceRepository signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+    //Call the signup method of the repository
+    [self.userServiceRepository signupUser:signupRequest withCallback:^(SignUp *response, NSError *error) {
         successCallback(response,nil);
     }];
     

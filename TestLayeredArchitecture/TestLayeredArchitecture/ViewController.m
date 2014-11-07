@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "UserManager.h"
 #import "User.h"
-#import "SignUpRequest.h"
+#import "SignUp.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -52,15 +52,15 @@
 
 -(void) signUp
 {
-    //
-    SignUpRequest *signupRequest  = [[SignUpRequest alloc]init];
+    //Create a request object for signup
+    SignUp *signupRequest  = [[SignUp alloc]init];
     signupRequest.uuid = @"0E53A7EE-B308-4BEF-8F09-38D25CDC37E7";
     signupRequest.email = @"prachi@creativecapsule.com";
     
-    //
-    //
+    
+    //Call the signup method of the manager class
     UserManager *usermanager = [[UserManager alloc]init];
-    [usermanager signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+    [usermanager signupUser:signupRequest withCallback:^(SignUp *response, NSError *error) {
         //return code
         NSLog(@"name %@", response.employee.firstName );
     }];

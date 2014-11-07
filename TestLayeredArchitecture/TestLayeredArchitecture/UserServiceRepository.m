@@ -15,15 +15,16 @@
         self = [super init];
     }
     
-    //set the appropriate database layer implementation
+    //set the appropriate service layer implementation
     self.serviceDelegate = [[RestKitImplementation alloc]init];
     return self;
 }
 
--(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback
+-(void) signupUser : (SignUp *) signupRequest withCallback:(void(^)(SignUp *response,NSError *error))callback
 {
     successCallback = callback;
-   [self.serviceDelegate signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+    //Call the signup method from the specified service implementation
+   [self.serviceDelegate signupUser:signupRequest withCallback:^(SignUp *response, NSError *error) {
         successCallback(response,nil);
     }];
 
