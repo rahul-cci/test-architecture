@@ -18,5 +18,6 @@
 @property (nonatomic,strong) NSDate *joiningDate;
 @property (nonatomic) BOOL isSalaried;
 @property (nonatomic,strong) Company *currentCompany;
+@property (nonatomic,strong) NSMutableArray *anniversaries;
 
 @end

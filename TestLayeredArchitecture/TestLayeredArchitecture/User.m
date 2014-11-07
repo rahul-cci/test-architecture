@@ -10,6 +10,14 @@
 
 @implementation User
 
-@synthesize firstName,lastName,age,joiningDate,isSalaried,currentCompany;
+@synthesize firstName,lastName,age,joiningDate,isSalaried,currentCompany,anniversaries;
+
+- (id) init{
+    if (!self) {
+        self = [super init];
+    }
+    self.anniversaries = [NSMutableArray array];
+    return self;
+}
 
 @end

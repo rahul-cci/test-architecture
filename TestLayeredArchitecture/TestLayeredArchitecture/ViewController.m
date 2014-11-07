@@ -10,11 +10,13 @@
 #import "UserManager.h"
 #import "User.h"
 #import "SignUpResponse.h"
+#import "Anniversary.h"
 #import "SignUpRequest.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *companyNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *anniversaryCount;
 
 @end
 
@@ -31,6 +33,7 @@
     }
     [self.nameLabel setText:user.lastName];
     [self.companyNameLabel setText:user.currentCompany.companyName];
+    [self.anniversaryCount setText:[NSString stringWithFormat:@"count:%lld",[user.anniversaries count]]];
     
     user.firstName = @"Rahul";
     user.lastName = @"S";
@@ -44,10 +47,27 @@
     }
     c.companyName = @"Creative Capsule";
     c.address = @"Verna";
-    
     user.currentCompany = c;
+    
+    Anniversary *birthday = [user.anniversaries objectAtIndex:0];
+    //Anniversary *birthday = [[Anniversary alloc]init];
+    if (birthday == nil) {
+        birthday = [[Anniversary alloc]init];
+    }
+    birthday.title = @"Birthday";
+    birthday.date = [NSDate date];
+    
+    Anniversary *weddingAnn = [user.anniversaries objectAtIndex:1];
+    //Anniversary *weddingAnn = [[Anniversary alloc]init];
+    weddingAnn.title = @"Wedding Anniversary";
+    weddingAnn.date = [NSDate date];
+    
+    user.anniversaries = [[NSMutableArray alloc]initWithObjects:birthday,weddingAnn, nil];
+    
     [userManager saveUser:user];
-    [self signUp];
+    
+    
+    //[self signUp];
 }
 
 

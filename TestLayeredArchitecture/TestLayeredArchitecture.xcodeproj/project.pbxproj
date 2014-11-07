@@ -18,6 +18,7 @@
 		4C876DA31A0BA018006B7C6A /* UserServiceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C876DA21A0BA018006B7C6A /* UserServiceRepository.m */; };
 		4CAA45CA1A0CDD3A00F617B7 /* SignUpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA45C91A0CDD3A00F617B7 /* SignUpRequest.m */; };
 		B751B4CA1A0A203C006FD259 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = B751B4C91A0A203C006FD259 /* Company.m */; };
+		B753EB6E1A0CA1B00084B777 /* Anniversary.m in Sources */ = {isa = PBXBuildFile; fileRef = B753EB6D1A0CA1B00084B777 /* Anniversary.m */; };
 		B75796B01A0A43110022C729 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = B75796AF1A0A43110022C729 /* Model.m */; };
 		B7B09E541A08A9F10038C04A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B09E531A08A9F10038C04A /* main.m */; };
 		B7B09E571A08A9F10038C04A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B09E561A08A9F10038C04A /* AppDelegate.m */; };
@@ -67,6 +68,8 @@
 		5B95666E11498C39079B9BAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B751B4C81A0A203C006FD259 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		B751B4C91A0A203C006FD259 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		B753EB6C1A0CA1B00084B777 /* Anniversary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anniversary.h; sourceTree = "<group>"; };
+		B753EB6D1A0CA1B00084B777 /* Anniversary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anniversary.m; sourceTree = "<group>"; };
 		B75796AE1A0A43110022C729 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		B75796AF1A0A43110022C729 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		B7B09E4E1A08A9F10038C04A /* TestLayeredArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestLayeredArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +156,8 @@
 				B75796AF1A0A43110022C729 /* Model.m */,
 				B7B09E7B1A08AA960038C04A /* User.h */,
 				B7B09E7C1A08AA960038C04A /* User.m */,
+				B753EB6C1A0CA1B00084B777 /* Anniversary.h */,
+				B753EB6D1A0CA1B00084B777 /* Anniversary.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				4C876D991A0B9FC2006B7C6A /* RestKitMapping.m in Sources */,
 				4C876DA31A0BA018006B7C6A /* UserServiceRepository.m in Sources */,
 				4C876D931A0B9F9A006B7C6A /* RangingService.m in Sources */,
+				B753EB6E1A0CA1B00084B777 /* Anniversary.m in Sources */,
 				B75796B01A0A43110022C729 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
