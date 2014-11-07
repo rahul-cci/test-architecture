@@ -148,14 +148,28 @@
         [object setValue:[managedObject valueForKey:key] forKey:key];
     }
     for (NSString *key in [entity relationshipsByName]) {
+        NSLog(@"relation:%@",key);
         //If the table has pointers to other tables we need to create objects for the pointed record
-        id pointerObj = [object valueForKey:key];
-        NSManagedObject *pointerManagedObject = [managedObject valueForKey:key];
-        NSEntityDescription *entity = [pointerManagedObject entity];
-        NSString *innerClassName = NSStringFromClass([pointerObj class]);
-        innerClassName = [entity name];
-        pointerObj = [self toObject:pointerManagedObject ofType:innerClassName];
-        [object setValue:pointerObj forKey:key];
+        id pointerObj = [managedObject valueForKey:key];
+        if ([pointerObj isKindOfClass:[NSSet class]] || [pointerObj isKindOfClass:[NSArray class]]) {
+            //
+            NSMutableArray *pointerObjectsArray = [[NSMutableArray alloc]init];
+            for (NSManagedObject *pointerManagedObject in pointerObj) {
+                NSEntityDescription *pointerEntity = [pointerManagedObject entity];
+                NSString *innerClassName = [pointerEntity name];
+                pointerObj = [self toObject:pointerManagedObject ofType:innerClassName];
+                [pointerObjectsArray addObject:pointerObj];
+            }
+            [object setValue:pointerObjectsArray forKey:key];
+        }
+        else{
+            NSManagedObject *pointerManagedObject = [managedObject valueForKey:key];
+            NSEntityDescription *entity = [pointerManagedObject entity];
+            NSString *innerClassName = [entity name];
+            pointerObj = [self toObject:pointerManagedObject ofType:innerClassName];
+            [object setValue:pointerObj forKey:key];
+        }
+        
     }
     
     //The primary key of the coredata table is copied to the identifier field
@@ -214,6 +228,7 @@
         {
             switch (attributes[attr].name[0]) {
                 case 'V':
+                    NSLog(@"property:%s",attributes[attr].value);
                     propertyKey = [NSString stringWithFormat:@"%s",attributes[attr].value];
                     break;
                 default:
@@ -225,13 +240,25 @@
         //If any of the properties is a Custom model create NSManagedObject for it recursively
         if ([valueObj respondsToSelector:@selector(isOfModelType)]) {
             //is a custom model.
-            [self saveObject:[object valueForKey:propertyKey]];
-            NSManagedObject *innerObject = [self toManagedObject:[object valueForKey:propertyKey]];
+            [self saveObject:valueObj];
+            NSManagedObject *innerObject = [self toManagedObject:valueObj];
             [managedObject setValue:innerObject forKey:propertyKey];
+        }
+        else if ([valueObj isKindOfClass:[NSMutableArray class]]){
+            //is an array of custom models.
+            NSMutableSet *managedObjectSets = [NSMutableSet set];
+            NSMutableArray *objectArray = valueObj;
+            for (id object in objectArray) {
+                [self saveObject:object];
+                NSManagedObject *innerObject = [self toManagedObject:object];
+                [managedObjectSets addObject:innerObject];
+            }
+            NSSet *managedSets = [NSSet setWithSet:managedObjectSets];
+            [managedObject setValue:managedSets forKey:propertyKey];
         }
         else{
             //is a primitive type hence can be assigned directly.
-            [managedObject setValue:[object valueForKey:propertyKey] forKey:propertyKey];
+            [managedObject setValue:valueObj forKey:propertyKey];
         }
         
         
