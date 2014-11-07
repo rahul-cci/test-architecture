@@ -7,17 +7,36 @@
 //
 
 #import "RestKitImplementation.h"
+#import <RestKit/RestKit.h>
+
 
 @implementation RestKitImplementation
-- (void)signupUser:(NSObject*)object  withCallback:(void (^)(SignUp *, NSError *))callback {
+- (void)signupUser:(NSObject*)request  withCallback:(void (^)(NSObject *, NSError *))callback {
     successCallback = callback;
    
-    
-    SignUp *signupResponseObject = [[SignUp alloc]init];
-    Employee *emp = [[Employee alloc]init];
-    emp.firstName = @"Prachi";
-    signupResponseObject.employee = emp;
-    successCallback(signupResponseObject, nil);
-   
+    [self initializeRestkit];
+    [self configureRestKitForPost :request];
 }
+
+
+
+-(void) initializeRestkit
+{
+    RKObjectManager *restkitManager =[RKObjectManager managerWithBaseURL:[[NSURL alloc] initWithString:@"http://timetracking.creativecapsule.ccigoa:8176/"]];
+    [RKObjectManager setSharedManager:restkitManager];
+    
+    restkitManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("Restkit/Network", RKLogLevelDebug);
+    
+}
+
+
+- (void)configureRestKitForPost: (NSObject *)request
+{
+    NSObject *requestObject = request;
+      
+}
+
 @end

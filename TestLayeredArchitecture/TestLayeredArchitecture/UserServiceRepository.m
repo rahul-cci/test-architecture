@@ -20,11 +20,13 @@
     return self;
 }
 
--(void) signupUser : (SignUp *) signupRequest withCallback:(void(^)(SignUp *response,NSError *error))callback
+-(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback
 {
     successCallback = callback;
     //Call the signup method from the specified service implementation
-   [self.serviceDelegate signupUser:signupRequest withCallback:^(SignUp *response, NSError *error) {
+   [self.serviceDelegate signupUser:signupRequest withCallback:^(NSObject *response, NSError *error) {
+       //TODO covert response to signup object
+       
         successCallback(response,nil);
     }];
 

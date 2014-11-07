@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 CCI. All rights reserved.
 //
 
-#import "SignUp.h"
-#import <RestKit.h>
+#import "SignUpResponse.h"
 
-@implementation SignUp
+@implementation SignUpResponse
 
 @end

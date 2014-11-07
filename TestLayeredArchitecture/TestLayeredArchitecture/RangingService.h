@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Model.h"
 
-@interface RangingService : NSObject
+@interface RangingService : Model
 
 @end

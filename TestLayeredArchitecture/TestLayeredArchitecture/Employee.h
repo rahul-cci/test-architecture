@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit.h>
+#import "Model.h"
 
-@interface Employee : NSObject
+@interface Employee : Model
 @property (nonatomic) int *employeeId;
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;

@@ -7,18 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RestKit.h>
 #import "Employee.h"
 #import "Beacon.h"
 #import "BeaconService.h"
 #import "RangingService.h"
+#import "Model.h"
 
-@interface SignUp : NSObject
+@interface SignUpResponse : Model
 @property (nonatomic, strong) NSString *error;
 @property (nonatomic, strong) Employee *employee;
 @property (strong,nonatomic) NSMutableArray *beaconsArray;
 @property (strong,nonatomic) NSMutableArray *beaconServicesArray;
 @property (strong,nonatomic) NSMutableArray *rangingServicesArray;
-@property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *uuid;
 @end

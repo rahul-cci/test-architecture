@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SignUpRequest : NSObject
-
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *uuid;
 @end

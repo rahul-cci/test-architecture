@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Model.h"
 
-@interface BeaconService : NSObject
+@interface BeaconService : Model
 
 @end
