@@ -63,6 +63,7 @@
 		4C876DA21A0BA018006B7C6A /* UserServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserServiceRepository.m; sourceTree = "<group>"; };
 		4CAA45C81A0CDD3A00F617B7 /* SignUpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpRequest.h; sourceTree = "<group>"; };
 		4CAA45C91A0CDD3A00F617B7 /* SignUpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpRequest.m; sourceTree = "<group>"; };
+		4CAA45CD1A0CE02B00F617B7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5B95666E11498C39079B9BAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B751B4C81A0A203C006FD259 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		B751B4C91A0A203C006FD259 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
@@ -156,6 +157,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		4CAA45CC1A0CE01100F617B7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4CAA45CD1A0CE02B00F617B7 /* Constants.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		B7B09E451A08A9F10038C04A = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +188,7 @@
 		B7B09E501A08A9F10038C04A /* TestLayeredArchitecture */ = {
 			isa = PBXGroup;
 			children = (
+				4CAA45CC1A0CE01100F617B7 /* Utility */,
 				4C876D871A0B9EFC006B7C6A /* Models */,
 				B7B09E7A1A08AA060038C04A /* Controller */,
 				B7B09E551A08A9F10038C04A /* AppDelegate.h */,

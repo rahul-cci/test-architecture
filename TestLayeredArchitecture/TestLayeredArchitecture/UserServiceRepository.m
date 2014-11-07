@@ -8,6 +8,7 @@
 
 #import "UserServiceRepository.h"
 #import "RestKitImplementation.h"
+#import "Constants.h"
 
 @implementation UserServiceRepository
 - (id)init{
@@ -23,9 +24,17 @@
 -(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback
 {
     successCallback = callback;
+    
+    NSMutableDictionary *requestMapping = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *responseMapping = [[NSMutableDictionary alloc] init];
+    NSString *path = RESKIT_SIGNUP_URL;
+    NSMutableDictionary *headers = [[NSMutableDictionary alloc] init];
+   
+    NSObject *reqObject ;
+    
     //Call the signup method from the specified service implementation
-   [self.serviceDelegate signupUser:signupRequest withCallback:^(NSObject *response, NSError *error) {
-       //TODO covert response to signup object
+   [self.serviceDelegate signupUser:reqObject addRequestMapping:requestMapping addResponseMapping:responseMapping path:path addHeaders:headers withCallback:^(NSObject *response, NSError *error) {
+       //TODO convert response to signup object
        
         successCallback(response,nil);
     }];
