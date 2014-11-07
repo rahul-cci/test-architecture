@@ -10,5 +10,7 @@
 #import "ServicesProtocol.h"
 
 @interface RestKitImplementation : NSObject <ServicesProtocol>
-
+{
+    void(^successCallback)(SignUpResponse *response,NSError *error);
+}
 @end

@@ -12,8 +12,10 @@
 #import "SignUpResponse.h"
 
 @interface UserServiceRepository : NSObject
-
+{
+    void(^successCallback)(SignUpResponse *response,NSError *error);
+}
 @property (nonatomic,strong) id<ServicesProtocol> serviceDelegate;
 
--(SignUpResponse *) signupUser : (SignUpRequest *) signupRequest;
+-(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
 @end

@@ -20,10 +20,13 @@
     return self;
 }
 
--(SignUpResponse *) signupUser : (SignUpRequest *) signupRequest
+-(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback
 {
-    SignUpResponse *signUpResponse = [self.serviceDelegate signupUser:signupRequest];
-    return signUpResponse;
+    successCallback = callback;
+   [self.serviceDelegate signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+        successCallback(response,nil);
+    }];
+
 }
 
 @end

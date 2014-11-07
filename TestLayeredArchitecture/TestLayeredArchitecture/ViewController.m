@@ -58,10 +58,14 @@
     signupRequest.email = @"prachi@creativecapsule.com";
     
     //
+    //
     UserManager *usermanager = [[UserManager alloc]init];
-    SignUpResponse *signUpResponse = [usermanager signupUser:signupRequest];
+    [usermanager signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+        //return code
+        NSLog(@"name %@", response.employee.firstName );
+    }];
     
-    NSLog(@"name %@", signUpResponse.employee.firstName );
+
     
 }
 

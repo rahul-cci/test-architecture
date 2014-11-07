@@ -12,8 +12,11 @@
 #import "SignUpResponse.h"
 @protocol ServicesProtocol <NSObject>
 
+
+
 @required
-- (SignUpResponse *)signupUser:(NSObject*)object;
+- (void)signupUser:(NSObject*)object  withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
+
 
 @end
 
