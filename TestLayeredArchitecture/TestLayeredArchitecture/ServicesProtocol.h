@@ -14,7 +14,7 @@
 
 
 @required
-- (void)signupUser:(NSObject*)object  addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers withCallback:(void(^)(NSObject *response,NSError *error))callback;
+- (void)post:(NSObject*)object  addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseObjectClass withCallback:(void(^)(NSObject *response,NSError *error))callback;
 
 
 @end

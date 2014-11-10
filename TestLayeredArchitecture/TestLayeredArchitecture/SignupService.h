@@ -11,7 +11,7 @@
 #import "SignUpRequest.h"
 #import "SignUpResponse.h"
 
-@interface UserServiceRepository : NSObject
+@interface SignupService : NSObject
 {
     void(^successCallback)(SignUpResponse *response,NSError *error);
 }

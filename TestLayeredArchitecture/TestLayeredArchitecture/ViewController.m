@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    UserManager *userManager = [[UserManager alloc]init];
+/*    UserManager *userManager = [[UserManager alloc]init];
     User *user = [userManager getCurrentUser];
     if (user == nil) {
         user = [[User alloc]init];
@@ -64,10 +64,10 @@
     
     user.anniversaries = [[NSMutableArray alloc]initWithObjects:birthday,weddingAnn, nil];
     
-    [userManager saveUser:user];
+    [userManager saveUser:user];*/
     
     
-    //[self signUp];
+    [self signUp];
 }
 
 
@@ -75,15 +75,20 @@
 {
     //Create a request object for signup
     SignUpRequest *signupRequest  = [[SignUpRequest alloc]init];
-    signupRequest.uuid = @"0E53A7EE-B308-4BEF-8F09-38D25CDC37E7";
-    signupRequest.email = @"prachi@creativecapsule.com";
+    signupRequest.UUID = @"0E53A7EE-B308-4BEF-8F09-38D25CDC37E7";
+    signupRequest.Email = @"prachi@creativecapsule.com";
     
     
     //Call the signup method of the manager class
     UserManager *usermanager = [[UserManager alloc]init];
-    [usermanager signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+    [usermanager signupUser:signupRequest withCallback:^(BOOL isSignedUp) {
         //return code
-        NSLog(@"name %@", response.employee.firstName );
+       if(isSignedUp){
+           NSLog(@"SignedUpSuccessfully");
+       }
+       else{
+           NSLog(@"Could not sign up");
+       }
     }];
     
 

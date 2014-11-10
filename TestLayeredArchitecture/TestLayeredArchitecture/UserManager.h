@@ -11,18 +11,18 @@
 #import "UserDBRepository.h"
 #import "SignUpRequest.h"
 #import "SignUpResponse.h"
-#import "UserServiceRepository.h"
+#import "SignupService.h"
 
 @interface UserManager : NSObject
 {
-    void(^successCallback)(SignUpResponse *response,NSError *error);
+    void(^successCallback)(BOOL);
 }
 
 @property (nonatomic,strong) UserDBRepository *repository;
-@property (nonatomic,strong) UserServiceRepository *userServiceRepository;
+@property (nonatomic,strong) SignupService *userServiceRepository;
 
 - (User*)getCurrentUser;
 - (BOOL)saveUser:(User*)user;
--(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
+-(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(BOOL))callback;
 
 @end

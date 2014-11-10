@@ -11,13 +11,14 @@
 #import "Constants.h"
 
 
+
 @implementation RestKitImplementation
-- (void)signupUser:(NSObject*)request addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers withCallback:(void (^)(NSObject *, NSError *))callback {
+- (void)post:(NSObject*)request addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseClass withCallback:(void (^)(NSObject *, NSError *))callback {
     
     successCallback = callback;
    
     [self initializeRestkit];
-    [self configureRestKitForPost : request addRequestMapping:requestMapping addResponseMapping:responseMapping  path:path  addHeaders: headers ];
+    [self configureRestKitForPost : request addRequestMapping:requestMapping addResponseMapping:responseMapping  path:path  addHeaders: headers requestClass:requestClass responseClass:(Class)responseClass];
 }
 
 
@@ -36,16 +37,16 @@
 }
 
 
-- (void)configureRestKitForPost: (NSObject *)requestObj addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers
+- (void)configureRestKitForPost: (NSObject *)requestObj addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseClass
 {
    
     //Define the mapping for request and respone
     RKObjectMapping *reqMapping = [self defineMapping:requestMapping];
-    RKObjectMapping *respMapping = [self defineMapping:responseMapping];
+    RKObjectMapping *respMapping = [self defineResponseMapping:responseMapping :responseClass];
     
     //Define the request and response descriptors by appending path and mapping
     RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                                                                                   objectClass:[NSObject class]
+                                                                                   objectClass:requestClass
                                                                                    rootKeyPath:nil
                                                                                    method:RKRequestMethodPOST];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respMapping
@@ -75,7 +76,7 @@
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
       
         NSLog(@"Mapped the article: %@", result);
-        successCallback(result, nil);
+        successCallback([result firstObject], nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Failed with error: %@", [error localizedDescription]);
     }];
@@ -95,6 +96,16 @@
     
     return mapping;
 }
+
+- (RKObjectMapping *) defineResponseMapping :(NSMutableDictionary *) mappingDictionary : (Class) responseClass
+{
+    RKObjectMapping * mapping =  [RKObjectMapping mappingForClass:responseClass];
+    
+    [mapping addAttributeMappingsFromDictionary:mappingDictionary];
+    
+    return mapping;
+}
+
 
 
 @end
