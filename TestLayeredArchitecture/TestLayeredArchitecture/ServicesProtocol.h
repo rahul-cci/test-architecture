@@ -8,13 +8,13 @@
 
 #ifndef TestLayeredArchitecture_ServicesProtocol_h
 #define TestLayeredArchitecture_ServicesProtocol_h
+#import "BaseService.h"
 
 @protocol ServicesProtocol <NSObject>
 
 
-
 @required
-- (void)post:(NSObject*)object  addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseObjectClass withCallback:(void(^)(NSObject *response,NSError *error))callback;
+- (void)post:(NSObject*)object  withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void(^)(NSObject *response,NSError *error))callback;
 
 
 @end

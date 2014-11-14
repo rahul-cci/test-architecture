@@ -10,11 +10,9 @@
 #import "ServicesProtocol.h"
 #import "SignUpRequest.h"
 #import "SignUpResponse.h"
+#import "BaseService.h"
 
-@interface SignupService : NSObject
-{
-    void(^successCallback)(SignUpResponse *response,NSError *error);
-}
+@interface SignupService :BaseService
 @property (nonatomic,strong) id<ServicesProtocol> serviceDelegate;
 
 -(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;

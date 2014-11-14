@@ -12,7 +12,8 @@
 @property (nonatomic) BOOL *isMappingDefined;
 @property (nonatomic) Class requestMappingClass;
 @property (nonatomic) Class responseMappingClass;
-- (NSDictionary *) requestMapping;
-- (NSDictionary *) responseMapping;
+- (NSDictionary *) defineRequestMapping;
+- (NSDictionary *) defineResponseMapping;
 
 @end
+//TODO Status Codes

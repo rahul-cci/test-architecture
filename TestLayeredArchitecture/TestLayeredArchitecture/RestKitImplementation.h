@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ServicesProtocol.h"
+#import "BaseService.h"
 
 @interface RestKitImplementation : NSObject <ServicesProtocol>
-{
-    void(^successCallback)(NSObject *response,NSError *error);
-}
 @end

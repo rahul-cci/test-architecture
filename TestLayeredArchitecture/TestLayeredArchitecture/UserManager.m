@@ -16,8 +16,8 @@
         self = [super init];
     }
     self.repository = [[UserDBRepository alloc]init];
-    self.userServiceRepository = [[SignupService alloc]init];
-
+    self.signupService = [[SignupService alloc]init];
+    
     
     return self;
 }
@@ -38,10 +38,9 @@
 }
 
 -(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void (^)(BOOL))callback {
-    successCallback = callback;
-    
+    __block void(^successCallback)(BOOL) = callback;
     //Call the signup method of the repository
-    [self.userServiceRepository signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
+    [self.signupService signupUser:signupRequest withCallback:^(SignUpResponse *response, NSError *error) {
         successCallback(TRUE);
     }];
     

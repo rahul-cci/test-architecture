@@ -12,18 +12,21 @@
 
 
 
+
+
 @implementation RestKitImplementation
-- (void)post:(NSObject*)request addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseClass withCallback:(void (^)(NSObject *, NSError *))callback {
+
+- (id)init{
+    if (!self) {
+        self = [super init];
+    }
     
-    successCallback = callback;
-   
     [self initializeRestkit];
-    [self configureRestKitForPost : request addRequestMapping:requestMapping addResponseMapping:responseMapping  path:path  addHeaders: headers requestClass:requestClass responseClass:(Class)responseClass];
+    return self;
 }
 
 
-
--(void) initializeRestkit
+- (void)initializeRestkit
 {
     //Initialize restkit manager with base url
     RKObjectManager *restkitManager =[RKObjectManager managerWithBaseURL:[[NSURL alloc] initWithString:RESKIT_BASE_URL]];
@@ -36,24 +39,41 @@
     
 }
 
+- (void)post:(NSObject*)request withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *))callback {
+    
+    
+    [self configureRestKitForPost : request withRequestMapping:requestMapping responseMapping:responseMapping  path:path  headers: headers requestClass:requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback];
+}
 
-- (void)configureRestKitForPost: (NSObject *)requestObj addRequestMapping:(NSMutableDictionary *)requestMapping addResponseMapping:(NSMutableDictionary *)responseMapping path:(NSString *)path  addHeaders:(NSMutableDictionary *)headers requestClass:(Class)requestClass responseClass:(Class)responseClass
+
+
+
+
+
+- (void)configureRestKitForPost: (NSObject *)requestObj withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback
 {
-   
-    //Define the mapping for request and respone
-    RKObjectMapping *reqMapping = [self defineMapping:requestMapping];
-    RKObjectMapping *respMapping = [self defineResponseMapping:responseMapping :responseClass];
+    
+    __block void(^successCallback)(NSObject *, NSError *) = callback;
+    
+    //Define the mapping for request and response
+    RKObjectMapping *reqMapping;
+    RKObjectMapping *respMapping;
+    if(!baseService.isMappingDefined) {
+    reqMapping = [self defineMapping:requestMapping];
+    respMapping = [self defineMapping:responseMapping];
+    baseService.isMappingDefined = TRUE;
+    }
     
     //Define the request and response descriptors by appending path and mapping
     RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
                                                                                    objectClass:requestClass
                                                                                    rootKeyPath:nil
-                                                                                   method:RKRequestMethodPOST];
+                                                                                        method:RKRequestMethodPOST];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respMapping
-                                                                                   method:RKRequestMethodPOST
-                                                                                   pathPattern:path
-                                                                                   keyPath:@""
-                                                                                   statusCodes:RKStatusCodeIndexSetForClass (RKStatusCodeClassSuccessful)];
+                                                                                            method:RKRequestMethodPOST
+                                                                                       pathPattern:path
+                                                                                           keyPath:@""
+                                                                                       statusCodes:RKStatusCodeIndexSetForClass (RKStatusCodeClassSuccessful)];
     
     
     //Add the request and response descriptors to the restkit manager
@@ -69,12 +89,12 @@
     [request setTimeoutInterval:10];
     
     //Define the operation by setting the request and response descriptor
-     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     
     
     //Callback for operation
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-      
+        
         NSLog(@"Mapped the article: %@", result);
         successCallback([result firstObject], nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -88,7 +108,7 @@
 }
 
 
-- (RKObjectMapping *) defineMapping :(NSMutableDictionary *) mappingDictionary
+- (RKObjectMapping *) defineMapping :(NSDictionary *) mappingDictionary
 {
     RKObjectMapping * mapping =  [RKObjectMapping requestMapping];
     
@@ -97,14 +117,6 @@
     return mapping;
 }
 
-- (RKObjectMapping *) defineResponseMapping :(NSMutableDictionary *) mappingDictionary : (Class) responseClass
-{
-    RKObjectMapping * mapping =  [RKObjectMapping mappingForClass:responseClass];
-    
-    [mapping addAttributeMappingsFromDictionary:mappingDictionary];
-    
-    return mapping;
-}
 
 
 

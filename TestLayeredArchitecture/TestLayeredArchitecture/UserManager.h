@@ -14,12 +14,8 @@
 #import "SignupService.h"
 
 @interface UserManager : NSObject
-{
-    void(^successCallback)(BOOL);
-}
-
 @property (nonatomic,strong) UserDBRepository *repository;
-@property (nonatomic,strong) SignupService *userServiceRepository;
+@property (nonatomic,strong) SignupService *signupService;
 
 - (User*)getCurrentUser;
 - (BOOL)saveUser:(User*)user;
