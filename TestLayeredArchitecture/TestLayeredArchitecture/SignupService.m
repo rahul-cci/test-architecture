@@ -10,7 +10,21 @@
 #import "RestKitImplementation.h"
 #import "Constants.h"
 
+#define RESKIT_SIGNUP_URL @"api/requestaccess"
+
 @implementation SignupService
+
+static BOOL isMapDefined;
+
+- (void)setIsMappingDefined:(BOOL)isMappingDefined {
+    
+    isMapDefined = isMappingDefined;
+}
+
+- (BOOL)isMappingDefined {
+    return isMapDefined;
+}
+
 - (id)init{
     if (!self) {
         self = [super init];
@@ -23,27 +37,37 @@
 
 - (void)signupUser: (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse * response, NSError * error)) callback {
     __block void(^successCallback)(SignUpResponse * response, NSError * error) = callback;
-
-    //Set the parameters to be passed to the implementation
-    NSDictionary *requestMapping = [self defineRequestMapping];
-    NSDictionary *responseMapping = [self defineResponseMapping];
-    NSString *path = RESKIT_SIGNUP_URL;
-    NSMutableDictionary *headers = [[NSMutableDictionary alloc] init];
-    Class requestObjectClass = [signupRequest class];
-    self.requestMappingClass = requestObjectClass;
+  
+    self.requestMappingClass = [signupRequest class];
     self.responseMappingClass = [SignUpResponse class];
     
     
-    
-    //Call the signup method from the specified service implementation
-    [self.serviceDelegate post:signupRequest withRequestMapping:requestMapping responseMapping:responseMapping path:path headers:headers requestClass:requestObjectClass callingService:self callback:^(NSObject *response, NSError *error) {
-        SignUpResponse *signupresponse = (SignUpResponse *)response;
-        NSLog(@"%@", signupresponse);
-        successCallback(signupresponse,nil);
+    [self.serviceDelegate postWithRequest:signupRequest headers:nil path:RESKIT_SIGNUP_URL caller:self callback:^(NSObject *response, NSError *error) {
+        SignUpResponse *signUpResponse =(SignUpResponse *)response;
+        NSLog(@"beacon %@", signUpResponse);
+        successCallback((SignUpResponse *)response,error);
+        
     }];
     
 }
 
+
+-(NSDictionary *) defineObjectMappingForEmployee{
+        
+    NSDictionary *dictionary = [[NSDictionary alloc]initWithDictionary:@{
+                                                                           @"EmployeeId":@"employeeId",
+                                                                           @"FirstName":@"firstName",
+                                                                           @"LastName":@"lastName",
+                                                                           @"JoiningDate":@"joiningDate",
+                                                                           @"MobileNo":@"mobileNumber",
+                                                                           @"EmailId":@"emailId",
+                                                                           @"DesignationName":@"designationName",
+                                                                           @"CreatedDate":@"createdDate",
+                                                                           @"UpdateDate":@"updateDate"
+
+                                                                         } copyItems:YES];
+    return dictionary;
+}
 
 -(NSDictionary *)defineRequestMapping{
     NSDictionary *dictionary = [[NSDictionary alloc]initWithDictionary:@{
@@ -53,13 +77,21 @@
     return dictionary;
 }
 
--(NSDictionary *)defineResponseMapping{
+-(NSArray *)defineResponseMapping {
+    
+    NSMutableArray * mappings = [[NSMutableArray alloc] init];
+    [mappings addObject:[self defineObjectMappingForEmployee]];
+    
+    
     NSDictionary *dictionary = [[NSDictionary alloc]initWithDictionary:@{
-                                                                         @"Beacons":@"Beacons",
-                                                                         @"BeaconServices":@"BeaconServices",
-                                                                         @"RangingServices":@"RangingServices",
+                                                                         @"Beacons":@"beacons",
+                                                                         @"BeaconServices":@"beaconServices",
+                                                                         @"RangingServices":@"rangingServices",
+                                                                         @"GeoFences":@"geoFences"
                                                                          } copyItems:YES];
-    return dictionary;
+   
+    [mappings addObject:dictionary];
+    return mappings;
 }
 
 

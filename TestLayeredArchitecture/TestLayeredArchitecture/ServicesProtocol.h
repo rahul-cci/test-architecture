@@ -14,7 +14,11 @@
 
 
 @required
-- (void)post:(NSObject*)object  withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void(^)(NSObject *response,NSError *error))callback;
+//- (void)post:(NSObject*)object  withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void(^)(NSObject *response,NSError *error))callback;
+
+- (void)postWithRequest:(NSObject*) request headers:(NSDictionary *) headers path:(NSString *) path caller:(BaseService *) caller callback:(void (^)(NSObject *, NSError *))callback;
+    
+    
 
 
 @end

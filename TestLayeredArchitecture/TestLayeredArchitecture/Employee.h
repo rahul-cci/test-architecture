@@ -10,7 +10,7 @@
 #import "Model.h"
 
 @interface Employee : Model
-@property (nonatomic) int *employeeId;
+@property (nonatomic) int employeeId;
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *joiningDate;
@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSString *emailId;
 @property (nonatomic, strong) NSString *designationName;
 @property (nonatomic, strong) NSString *createdDate;
-@property (nonatomic, strong) NSString *updatedDate;
+@property (nonatomic, strong) NSString *updateDate;
 @end

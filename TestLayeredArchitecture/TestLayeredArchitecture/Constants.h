@@ -10,5 +10,5 @@
 #define TestLayeredArchitecture_Constants_h
 
 #define RESKIT_BASE_URL @"http://timetracking.creativecapsule.ccigoa:8176/"
-#define RESKIT_SIGNUP_URL @"api/requestaccess"
+
 #endif

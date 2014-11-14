@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface BaseService : NSObject
-@property (nonatomic) BOOL *isMappingDefined;
+@property (nonatomic) BOOL isMappingDefined;
 @property (nonatomic) Class requestMappingClass;
 @property (nonatomic) Class responseMappingClass;
+
 - (NSDictionary *) defineRequestMapping;
-- (NSDictionary *) defineResponseMapping;
+- (NSArray *) defineResponseMapping;
 
 @end
-//TODO Status Codes
+//TODO: Status Codes

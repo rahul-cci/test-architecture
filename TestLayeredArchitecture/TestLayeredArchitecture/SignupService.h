@@ -12,8 +12,13 @@
 #import "SignUpResponse.h"
 #import "BaseService.h"
 
-@interface SignupService :BaseService
+@interface SignupService :BaseService {
+    
+}
+
+//static int isMappingDefined;
+
 @property (nonatomic,strong) id<ServicesProtocol> serviceDelegate;
 
--(void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
+- (void) signupUser : (SignUpRequest *) signupRequest withCallback:(void(^)(SignUpResponse *response,NSError *error))callback;
 @end

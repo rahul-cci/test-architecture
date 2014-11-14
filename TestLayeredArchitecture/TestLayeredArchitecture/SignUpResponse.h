@@ -16,7 +16,8 @@
 @interface SignUpResponse : Model
 @property (nonatomic, strong) NSString *error;
 @property (nonatomic, strong) Employee *employee;
-@property (strong,nonatomic) NSMutableArray *Beacons;
-@property (strong,nonatomic) NSMutableArray *BeaconServices;
-@property (strong,nonatomic) NSMutableArray *RangingServices;
+@property (nonatomic, strong) NSMutableArray *beacons;
+@property (nonatomic, strong) NSMutableArray *beaconServices;
+@property (nonatomic, strong) NSMutableArray *rangingServices;
+@property (nonatomic, strong) NSMutableArray *geoFences;
 @end

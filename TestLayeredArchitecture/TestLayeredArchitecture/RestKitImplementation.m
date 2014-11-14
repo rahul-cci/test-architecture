@@ -39,18 +39,29 @@
     
 }
 
-- (void)post:(NSObject*)request withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *))callback {
+//- (void)post:(NSObject*)request withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *))callback {
+//    
+//    
+//    [self configureRestKitForPost : request withRequestMapping:requestMapping responseMapping:responseMapping  path:path  headers: headers requestClass:requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback];
+//}
+//
+
+-(void)postWithRequest:(NSObject*) request headers:(NSDictionary *) headers path:(NSString *) path caller:(BaseService *) caller callback:(void (^)(NSObject *, NSError *))callback {
     
+    [self configureRestKitForPost : request
+                withRequestMapping:[caller defineRequestMapping]
+                   responseMapping:[caller defineResponseMapping]
+                              path:path
+                           headers: headers
+                      requestClass: [caller requestMappingClass]
+                    callingService:(BaseService *)caller
+                          callback:(void (^)(NSObject *, NSError *)) callback];
     
-    [self configureRestKitForPost : request withRequestMapping:requestMapping responseMapping:responseMapping  path:path  headers: headers requestClass:requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback];
 }
 
 
 
-
-
-
-- (void)configureRestKitForPost: (NSObject *)requestObj withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSDictionary *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback
+- (void)configureRestKitForPost: (NSObject *)requestObj withRequestMapping:(NSDictionary *)requestMapping responseMapping:(NSArray *)responseMapping path:(NSString *)path  headers:(NSDictionary *)headers requestClass:(Class)requestClass callingService:(BaseService *)baseService callback:(void (^)(NSObject *, NSError *)) callback
 {
     
     __block void(^successCallback)(NSObject *, NSError *) = callback;
@@ -59,9 +70,9 @@
     RKObjectMapping *reqMapping;
     RKObjectMapping *respMapping;
     if(!baseService.isMappingDefined) {
-    reqMapping = [self defineMapping:requestMapping];
-    respMapping = [self defineMapping:responseMapping];
-    baseService.isMappingDefined = TRUE;
+        reqMapping = [self defineMapping:requestMapping];
+        respMapping = [self defineMapping:responseMapping];
+        baseService.isMappingDefined = YES;
     }
     
     //Define the request and response descriptors by appending path and mapping
@@ -108,14 +119,27 @@
 }
 
 
-- (RKObjectMapping *) defineMapping :(NSDictionary *) mappingDictionary
-{
+- (RKObjectMapping *) defineMapping :(NSDictionary *) mappingDictionary {
+    
+    RKObjectMapping * mapping =  [RKObjectMapping requestMapping];
+    [mapping addAttributeMappingsFromDictionary:mappingDictionary];
+    return mapping;
+}
+
+
+- (RKObjectMapping *) defineMappings :(NSArray *) mappingArray {
+    
     RKObjectMapping * mapping =  [RKObjectMapping requestMapping];
     
-    [mapping addAttributeMappingsFromDictionary:mappingDictionary];
+    for (NSDictionary *dictionary in mappingArray) {
+        
+        [mapping addAttributeMappingsFromDictionary:dictionary];
+    }
+    
     
     return mapping;
 }
+
 
 
 
